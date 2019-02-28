@@ -5,70 +5,58 @@ class Results extends Component {
     constructor() {
         super();
         this.state = {
-            sentiment: 0,
-            keyPhrase: []
+            language: '',
+            sentiment: '',
+            keyPhrases: []
         }
     }
 
-    componentDidMount () {
+    componentDidUpdate (prevProps) {
+       if(prevProps.userInput !== this.props.userInput) {
         this.getResponse();
+       }
     }
 
     apiCalls = (endpoint,language) => {
+
         return axios({
-          method: 'POST',
-          url:
-            `https://canadacentral.api.cognitive.microsoft.com/text/analytics/v2.0/${endpoint}`,
-          dataResponse: 'json',
+          method: "POST",
+          url: `https://canadacentral.api.cognitive.microsoft.com/text/analytics/v2.0/${endpoint}`,
+          dataResponse: "json",
           headers: {
-            'Content-Type': 'application/json',
-            'Ocp-Apim-Subscription-Key': `${process.env.REACT_APP_API_KEY}`
+            "Content-Type": "application/json",
+            "Ocp-Apim-Subscription-Key": `${
+              process.env.REACT_APP_API_KEY
+            }`
           },
           data: {
-            'documents': [
-                {
-                    'language': language,
-                    'id': '1',
-                    'text': 'I love Cat'
-                }
+            documents: [
+              {
+                language: language,
+                id: "1",
+                text: this.props.userInput
+              }
             ]
-         }
+          }
         });
     }
 
     getResponse = async () => {
         try {
-
             const getLanguage = await this.apiCalls('languages');
-    
-            console.log(getLanguage);
-            
-            const language = getLanguage.data.documents[0].detectedLanguages[0].name;
-    
-            const languageCode = getLanguage.data.documents[0].detectedLanguages[0].iso6391Name;
-    
-            console.log(languageCode);
 
-            console.log(language);
-    
-            const getKeyPhrase = await this.apiCalls('keyPhrases',languageCode);
-    
-            const keyPhrase = getKeyPhrase.data.documents[0].keyPhrases
-    
-            console.log(keyPhrase);
-    
-            const getSentiment = await this.apiCalls('sentiment');
-    
-            const sentiment = getSentiment.data.documents[0].score;
-    
-            console.log(sentiment);
-    
-            const values = await Promise.all([
-              this.apiCalls("keyPhrases", languageCode),
-              this.apiCalls("sentiment", languageCode)
+            const languageCode = getLanguage.data.documents[0].detectedLanguages[0].iso6391Name;
+            
+            const getResults = await Promise.all([
+              this.apiCalls('keyPhrases', languageCode),
+              this.apiCalls('sentiment', languageCode)
             ]);
-    
-            console.log (values);
+            
+            this.setState ({
+                language: getLanguage.data.documents[0].detectedLanguages[0].name,
+                keyPhrases: getResults[0].data.documents[0].keyPhrases,
+                sentiment: ((getResults[1].data.documents[0].score) * 100).toFixed(2)
+            })
         }
         
         catch(error) {
@@ -79,8 +67,17 @@ class Results extends Component {
     render() {
         return (
            <div className="results">
-            <p>{this.state.sentiment}</p>
-            <p>{this.state.keyPhrase}</p>
+            <p className="results__language">You were typing in {this.state.language}</p>
+            <ul className="results__keyPhrases">We found the following subjects in the text you entered:
+                {
+                    this.state.keyPhrases.map((keyPhrase, i) => {
+                        return (
+                            <li key={i} className="results__keyPhrase">{keyPhrase}</li>
+                        )
+                    })
+                }
+            </ul>
+            <p className="results__sentiment">We think this is how you feel based on the text you entered :{this.state.sentiment}%</p>
            </div>            
         )
     }
