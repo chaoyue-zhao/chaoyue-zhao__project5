@@ -4,9 +4,12 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "firebase": "^5.8.4",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
-    "react-scripts": "2.1.5"
+    "react-scripts": "2.1.5",
+    "styled-components": "^4.1.3",
+    "styled-icons": "^7.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -22,5 +25,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.10.0"
+  }
 }

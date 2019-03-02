@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
-import './App.css';
+import { createGlobalStyle } from 'styled-components';
 import InputForm from './Components/InputForm';
 import Results from './Components/Results';
+import Header from './Components/Header';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: #ece8df;
+    color: #295166;
+  }
+`;
 
 class App extends Component {
   constructor() {
@@ -22,9 +30,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/*passing the handleFormSubmit function down as props*/}
-        <InputForm gatherUserInput={this.handleFormSubmit}/>
-        <Results userInput={this.state.text}/>
+        <GlobalStyle />
+          <Header />
+          {/*passing the handleFormSubmit function down as props*/}
+          <InputForm gatherUserInput={this.handleFormSubmit}/>
+          <Results userInput={this.state.text}/>        
       </div>
     );
   }

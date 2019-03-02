@@ -30,7 +30,7 @@ class InputForm extends Component {
                 cols="30" 
                 rows="10"
                 value={this.state.userInput}
-                onChange = {this.handleChange}
+                onChange={this.handleChange}
                 required
                 >
                 </textarea>
