@@ -2,7 +2,7 @@ import firebase from 'firebase';
 
 // Initialize Firebase
 const config = {
-  apiKey: "AIzaSyBVTy7mq7-zSZmhSnVaeUFmv5UazFVAcFk",
+  apiKey: `${process.env.FIREBASE_KEY}`,
   authDomain: "what-are-you-thinking.firebaseapp.com",
   databaseURL: "https://what-are-you-thinking.firebaseio.com",
   projectId: "what-are-you-thinking",
