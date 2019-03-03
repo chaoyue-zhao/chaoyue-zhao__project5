@@ -8,8 +8,8 @@ import { Coffee } from "styled-icons/feather/Coffee";
 *********/
 
 const FooterParagraph = styled.p`
-    font-size: 0.8rem;
-    margin: 0;
+  font-size: 0.8rem;
+  margin: 0;
 `
 
 const Link = styled.a`
@@ -17,17 +17,17 @@ const Link = styled.a`
   color: #295166;
   border-bottom: 1px dotted #295166;
   padding: 2px;
-  transition: all .2s;
+  transition: all 0.2s;
 
   &:hover {
-    background: #295166;
-    color: #ece8df;
+    background: ${props => props.theme.color.blue};
+    color: ${props => props.theme.color.white};
   }
 `;
 
 const HeartIcon = styled(Heart)`
   width: 20px;
-  color: #d77a61;
+  color: ${props => props.theme.color.red};
 `;
 
 const CoffeeIcon = styled(Coffee)`
@@ -47,10 +47,7 @@ class Footer extends Component {
             </FooterParagraph>
             <FooterParagraph>
               Made with Love <HeartIcon /> and Tea <CoffeeIcon /> at the
-              beautiful city of Toronto
-            </FooterParagraph>
-            <FooterParagraph>
-              Copyright © 2019 Chaoyue Zhao.
+              beautiful city of Toronto. Copyright © 2019 Chaoyue Zhao.
             </FooterParagraph>
           </React.Fragment>
         );

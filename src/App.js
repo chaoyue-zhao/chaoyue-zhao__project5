@@ -38,14 +38,17 @@ class App extends Component {
     super();
     //set up state here so we can use this in all of  our app Components
     this.state = {
-      text: ''
+      text: '',
+      showResult: false,
+      showLoggedThoughts: false
     }
   }
 
   //function to handle form submit which is expecting a parameter
   handleFormSubmit = (userInput) => {
     this.setState({
-      text: userInput
+      text: userInput,
+      showResult: true
     })
   }
 
@@ -58,10 +61,10 @@ class App extends Component {
               <Header />
               <Description />
               {/*passing the handleFormSubmit function down as props*/}
-              <InputForm gatherUserInput={this.handleFormSubmit}/>
-              <Footer />      
-              <Results userInput={this.state.text}/>
-              <LoggedThoughts thoughts={this.state.text}/>  
+              <InputForm gatherUserInput={this.handleFormSubmit} showResult={this.state.showResult}/>
+              {this.state.showResult && <Results userInput={this.state.text} />}
+              {this.state.showLoggedThoughts && <LoggedThoughts thoughts={this.state.text}/>}
+              <Footer />
           </div>  
         </Wrapper>  
       </ThemeProvider>

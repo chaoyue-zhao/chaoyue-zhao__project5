@@ -6,9 +6,9 @@ import styled from "styled-components";
 *********/
 
 const Title = styled.h1`
-  font-family: 'Reenie Beanie', cursive;
+  font-family: "Reenie Beanie", cursive;
   font-size: 4rem;
-  color: #295166;
+  color: ${props => props.theme.color.blue};
   margin: 10px 0;
 `;
 
