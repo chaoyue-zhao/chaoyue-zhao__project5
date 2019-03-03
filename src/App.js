@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 import InputForm from './Components/InputForm';
 import Results from './Components/Results';
 import Header from './Components/Header';
+import LoggedThoughts from './Components/LoggedThoughts';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -34,7 +35,8 @@ class App extends Component {
           <Header />
           {/*passing the handleFormSubmit function down as props*/}
           <InputForm gatherUserInput={this.handleFormSubmit}/>
-          <Results userInput={this.state.text}/>        
+          <Results userInput={this.state.text}/>
+          <LoggedThoughts thoughts={this.state.text}/>        
       </div>
     );
   }

@@ -1,21 +1,59 @@
 import React, { Component } from 'react';
+import firebase from '../firebase.js';
 
-const LoggedThoughts = 
-
-componentDidMount () {
-    const dbRef = firebase.database().ref();
-    dbRef.on('value', (firebaseData) => {
-    const newState = [];
-    const data = firebaseData.val();
-
-    for(let key in data) {
-        newState.push(data[key]);
+class LoggedThoughts extends Component {
+    constructor(){
+        super();
+        this.state = {
+            thoughts: []
+        }
     }
+    
+    componentDidMount() {
+        const dbRef = firebase.database().ref();
+        dbRef.on('value', (firebaseData) => {
+            const newState = [];
+            const data = firebaseData.val();
 
-    this.setState({
-        text: newState
-    })
-    })
+            for (let key in data) {
+                newState.push(data[key]);
+            }
+
+            this.setState({
+                thoughts: newState
+            })
+
+            console.log(this.state.thoughts);
+        })
+    }
+    
+    render() {
+        return (
+            <React.Fragment>
+                <ul>Logged Thoughts:                        
+                    {this.state.thoughts.map((thought, i) => {
+                        return (
+                        <li key={i}>Thought:{thought.text}
+                            <ul>
+                                <li>Language used: {thought.language}</li>
+                                <li key={i}>KeyPhrases:{}
+                                    <ul>
+                                        {thought.keyPhrases.map((keyphrase, i) => {
+                                            return (
+                                                <li key={i}>{keyphrase}</li>
+                                            )
+                                        })}
+                                    </ul>
+                                </li>
+                                <li>Sentiment:{thought.sentiment}</li>                                                   
+                            </ul>
+                        </li>
+                      )
+                    })}  
+                </ul>
+            </React.Fragment>
+        )
+    }
 }
 
-export default 
+export default LoggedThoughts;

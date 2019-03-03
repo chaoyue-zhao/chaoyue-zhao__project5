@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import firebase from '../firebase';
 import EditableKeyPhrases from './KeyPhrase';
 
 class Results extends Component {
@@ -39,6 +40,19 @@ class Results extends Component {
     });
   };
 
+  updateFirebase = () => {
+    const results = {
+      text: this.props.userInput,
+      language: this.state.language,
+      keyPhrases: this.state.keyPhrases,
+      sentiment: this.state.sentiment
+    }
+
+    const dbRef = firebase.database().ref();
+
+    dbRef.push(results);
+  }
+
   getResponse = async () => {
     try {
       const getLanguage = await this.apiCalls("languages");
@@ -57,14 +71,6 @@ class Results extends Component {
         sentiment: (getResults[1].data.documents[0].score * 100).toFixed(2)
       });
 
-      // const results = {
-      //     language:
-      //     keyPhrase:
-      //     sentiment:
-      // }
-
-      // //push to firebase the entire state or object above
-      // const dbRef = firebase().database
     } catch (error) {
       throw error;
     }
@@ -113,6 +119,10 @@ class Results extends Component {
           We think this is how you feel based on the text you entered :
           {this.state.sentiment}%
         </p>
+        <button 
+        type="submit"
+        onClick={this.updateFirebase}>
+        Log my thought</button>
       </div>
     );
   }
