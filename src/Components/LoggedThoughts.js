@@ -35,12 +35,12 @@ class LoggedThoughts extends Component {
                         return (
                         <li key={i}>Thought:{thought.text}
                             <ul>
-                                <li>Language used: {thought.language}</li>
+                                <li>Language used:{thought.language}</li>
                                 <li key={i}>KeyPhrases:{}
                                     <ul>
-                                        {thought.keyPhrases.map((keyphrase, i) => {
+                                        {thought.keyPhrases.map((keyPhrase, i) => {
                                             return (
-                                                <li key={i}>{keyphrase}</li>
+                                                <li key={i}>{keyPhrase}</li>
                                             )
                                         })}
                                     </ul>
