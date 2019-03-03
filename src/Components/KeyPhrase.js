@@ -10,7 +10,7 @@ class EditableKeyPhrases extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      keyPhrases: this.props.keyPhrases
+      keyPhrases: this.props.keyPhrases 
     //   editable: false
     };
   }
@@ -20,6 +20,8 @@ class EditableKeyPhrases extends Component {
       [e.target.name]: e.target.value
     });
   }
+
+  
 
   handleClick = () => {
       this.setState({

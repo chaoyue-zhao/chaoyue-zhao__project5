@@ -22,8 +22,6 @@ class LoggedThoughts extends Component {
             this.setState({
                 thoughts: newState
             })
-
-            console.log(this.state.thoughts);
         })
     }
     

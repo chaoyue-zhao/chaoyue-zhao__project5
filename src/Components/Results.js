@@ -87,13 +87,11 @@ class Results extends Component {
           newState[i] = newKeyPhrases;
         }
       }
-
-      console.log('newState', newState)
     
       this.setState({
         keyPhrases: newState
       });
-  };
+  };ß
 
   render() {
     return (
