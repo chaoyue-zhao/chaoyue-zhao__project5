@@ -63,7 +63,6 @@ class InputForm extends Component {
   // passing the userInput back to App here
   handleFormSubmit = e => {
     e.preventDefault();
-    console.log('formed submitted')
     this.props.gatherUserInput(this.state.userInput);
   };
 
