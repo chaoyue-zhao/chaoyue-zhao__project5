@@ -118,9 +118,9 @@ class EditableKeyPhrases extends Component {
           value={this.state.keyPhrases}
           onChange={this.handleChange}
           />
-          {!this.state.editable && <EditIcon onClick={this.handleClick} editable={this.state.editable}/>}
-          {this.state.editable && <CheckIcon onClick={this.phraseChecked}/>}
-          <DeleteIcon onClick={this.deletePhrase}/>
+          {!this.state.editable && <EditIcon aria-label="edit" onFocus={this.handleClick} onClick={this.handleClick} editable={this.state.editable}/>}
+         {this.state.editable && <CheckIcon aria-label="done" onFocus={this.phraseChecked} onClick={this.phraseChecked}/>}
+         <DeleteIcon aria-label="delete" onFocus={this.deletePhrase} onClick={this.deletePhrase}/>
       </React.Fragment>
     );
   }
