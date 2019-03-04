@@ -104,14 +104,13 @@ class NiceButton extends Component {
 
     handleClick () {
       window.location.hash = this.props.link
-      
     }
 
     render() {
         return (
             <Button 
-            type="submit"
-            onClick={this.handleClick}>
+            type={this.props.type}
+            onClick={`${this.props.showLoggedThoughts}`}>
                 <ArrowIcon className="icon" />
                 <span>{this.props.value}</span>
             </Button>

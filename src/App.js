@@ -53,6 +53,12 @@ class App extends Component {
     })
   }
 
+  showLoggedThoughts = () =>{
+    this.setState({
+      showLoggedThoughts: true
+    });
+  }
+
   render() {
     return (
       <ThemeProvider theme={Theme}>
@@ -63,7 +69,7 @@ class App extends Component {
               <Description />
               {/*passing the handleFormSubmit function down as props*/}
               <InputForm gatherUserInput={this.handleFormSubmit} showResult={this.state.showResult}/>
-              {this.state.showResult && <Results userInput={this.state.text} />}
+              {this.state.showResult && <Results userInput={this.state.text} showLoggedThoughts={this.showLoggedThoughts} />}
               {this.state.showLoggedThoughts && <LoggedThoughts thoughts={this.state.text}/>}
               <Footer />
           </div>  

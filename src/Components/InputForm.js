@@ -90,9 +90,9 @@ class InputForm extends Component {
       strings: [
         `A week ago, I
       dreamt about this super cool idea for a mood diary app.
-      Throughout the week, I drunk lots of tea, had couple 'why
+      Throughout the week, I drank lots of tea, had a couple of 'why
       this is not working', followed by 'oh my, I am so smart'
-      moments, got helps from many, many, many, many people. And
+      moments, got help from many, many, many, many people. And
       you guess it, now you are looking at this app. I feel very
       proud of myself.`,
         `Now you can type your thoughts here!`
@@ -132,7 +132,8 @@ class InputForm extends Component {
 
         <NiceButton 
           value= 'See results'
-          link = '#results'
+          link= '#results'
+          type= 'submit'
         />
       </Form>
     );
