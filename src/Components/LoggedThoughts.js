@@ -16,32 +16,83 @@ const Thought = styled.p`
 const ThoughtDetails = styled.ul`
     display: flex;
     flex-wrap: wrap;
+    margin: 0;
+    padding: 0 1rem;
 `
+const Language = styled.p`
+  width: 40%;
 
-const Language = styled.p `
-    width: 40%;
-`
+  @media (max-width: 1350px) {
+    width: 30;
+  }
 
-const LongerSentimentProgressBar = styled(SentimentProgressBar) `
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
+
+  @media (max-width: 1000px) {
+    width: 100%;
+    margin-bottom: 0;
+  }
+`;
+
+const LongerSentimentProgressBar = styled(SentimentProgressBar)`
   width: 50%;
-`
+  margin-top: 1rem;
+
+  @media(max-width: 1000px) {
+    width: 80%;
+    margin: 1rem 0 2rem 1rem;
+  }
+`;
 const SmallerSentimentText = styled(SentimentText) `
   width: 50%;
+
 `
 const SmallerSentiment = styled(Sentiment)`
   width: 50%;
+
+  @media(max-width: 1000px) {
+      width: 100%;
+      flex-direction: column; 
+      margin-top: 1rem;
+  }
 `
 
-const ReadjustedSentimentScore = styled(SentimentScore) `
-  right: 40%;
-`
+const ReadjustedSentimentScore = styled(SentimentScore)`
+  right: 25%;
 
-const KeyPhrases = styled.p `
-    display: flex;
-    justify-content: flex-start;
-    margin: 0;
-    width: 90%;
+  @media (max-width: 1000px) {
+    top: 70px;
+    right: 55%;
+  }
+`;
+const ReadjustedNegative = styled(Negative)`
+  right: 50%;
+
+  @media (max-width: 1000px) {
+    top: 70px;
+    right: 90%;
+  }
+
 `
+const ReadjustedPositive = styled(Positive)`
+  @media (max-width: 1000px) {
+    top: 70px;
+    right: 23%;
+  }
+`;
+const KeyPhrases = styled.p`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 0;
+  width: 90%;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
+`;
 const Phrase = styled.span `
     margin-left: 5px;
 `
@@ -86,17 +137,17 @@ class LoggedThoughts extends Component {
                             return (
                                 <Thought key={i}><Bold>Thought:</Bold> {thought.text}
                                 <ThoughtDetails>
-                                    <Language>Language: {thought.language} </Language>
+                                    <Language><Bold>Language</Bold>: {thought.language} </Language>
                                     <SmallerSentiment>
                                         <SmallerSentimentText>
-                                            Sentiment Score:
+                                            <Bold>Sentiment Score</Bold>:
                                         </SmallerSentimentText>
                                         <LongerSentimentProgressBar sentimentValue={thought.sentiment} />
                                         <ReadjustedSentimentScore>{thought.sentiment}%</ReadjustedSentimentScore>
-                                        q<Positive>Positive</Positive>
-                                        <Negative>Negative</Negative>
+                                        <ReadjustedPositive>Positive</ReadjustedPositive>
+                                        <ReadjustedNegative>Negative</ReadjustedNegative>
                                     </SmallerSentiment>   
-                                    <KeyPhrases key={i}>KeyPhrases: 
+                                    <KeyPhrases key={i}><Bold>KeyPhrases</Bold>: 
                                         {thought.keyPhrases.map((keyPhrase, i) => {
                                             return (
                                                 <Phrase key={i}>{keyPhrase},</Phrase>

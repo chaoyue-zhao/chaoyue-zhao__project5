@@ -46,7 +46,7 @@ class Footer extends Component {
               Powered by <Link href="https://azure.microsoft.com/en-us/services/cognitive-services/text-analytics/" target="__blank">Microsoft Cognitive Services Text Analytics API</Link>. 
             </FooterParagraph>
             <FooterParagraph>
-              Made with Love <HeartIcon /> and Tea <CoffeeIcon /> at the
+              Made with Love <HeartIcon /> and Tea <CoffeeIcon />in the
               beautiful city of Toronto. Copyright © 2019 Chaoyue Zhao.
             </FooterParagraph>
           </React.Fragment>

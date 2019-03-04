@@ -21,14 +21,22 @@ const GlobalStyle = createGlobalStyle`
     color: ${props => props.theme.color.blue};
     font-family: ${props => props.theme.bodyFont};
     font-size: 1rem;
+
+    @media(max-width:1200px) {
+      font-size: 0.9rem;
+    }
   }
 `;
 
 const Wrapper = styled.div `
-   max-width: 1400px;
+   max-width: 1600px;
    margin: 0 auto;
    width: 80%;
    text-align: center;
+
+   @media(max-width: 1200px) {
+     width: 90%;
+   }
 `
 /************
   FUNCTIONS

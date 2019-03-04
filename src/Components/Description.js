@@ -1,13 +1,20 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 
-const Paragraph = styled.p `
-    line-height: 1.6;
-    width: 80%;
-    margin: 0 auto;
-    text-align: left;
+const Paragraph = styled.p`
+  line-height: 1.6;
+  width: 80%;
+  margin: 0 auto;
+  text-align: left;
 
-`
+  @media (max-width: 1400px) {
+    width: 95%;
+  }
+
+  @media (max-width: 1200px) {
+    width: 100%;
+  }
+`;
 
 class Description extends Component {
     render () {

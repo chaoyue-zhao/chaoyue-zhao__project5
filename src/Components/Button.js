@@ -25,7 +25,7 @@ const Button = styled.button`
   text-transform: capitalize;
   background-color: ${props => props.theme.color.white};
   border: none;
-  border: 2px solid ${props => props.theme.color.blue};
+  border-bottom: 2px solid ${props => props.theme.color.blue};
   padding: 0.5rem 2rem;
   position: relative;
   backface-visibility: hidden;

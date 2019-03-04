@@ -14,8 +14,9 @@ const Form = styled.form `
 const TextArea = styled.textarea`
   display: block;
   width: 60%;
-  height: 35vh;
+  height: 32vh;
   margin: 1.5rem auto;
+  margin-bottom: 0;
   padding: 2%;
   resize: none;
   box-shadow: none;
@@ -31,6 +32,15 @@ const TextArea = styled.textarea`
   font-size: 1.3rem;
   color: ${props => props.theme.color.blue};
 
+  @media (max-width: 1200px) {
+    width: 80%;
+  }
+
+  @media (max-width: 800px) {
+    width: 95%;
+    height: 40vh;
+  }
+
   &:focus + .label {
     display: none;
   }
@@ -38,13 +48,25 @@ const TextArea = styled.textarea`
 
 const TypedText = styled.label`
   position: absolute;
-  top: 15%;
+  top: 10%;
   left: 20%;
   right: 20%;
   font-family: ${props => props.theme.headingFont};
   font-size: 1.4rem;
   color: ${props => props.theme.color.blue};
   text-align: left;
+
+  @media (max-width: 1200px) {
+    left: 10%;
+    top: 5%;
+    right: 10%;
+  }
+
+  @media (max-width: 800px) {
+    left: 5%;
+    right: 5%;
+    font-size: 1.2rem;
+  }
 `;
 
 /************
@@ -96,7 +118,7 @@ class InputForm extends Component {
       proud of myself.`,
         `Now you can type your thoughts here!`
       ],
-      typeSpeed: 60,
+      typeSpeed: 40,
       loop: false,
       showCursor: false
     };

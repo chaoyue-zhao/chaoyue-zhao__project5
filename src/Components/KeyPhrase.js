@@ -12,21 +12,33 @@ const EditIcon = styled(Edit2)`
   width: 20px;
   position: absolute;
   top: 25%;
-  right: 30%;
+  right: 10%;
+
+  @media (max-width: 600px) {
+    right: 8%;
+  }
 `;
 
 const CheckIcon = styled(Check)`
   width: 20px;
   position: absolute;
   top: 25%;
-  right: 30%;
+  right: 10%;
+
+  @media(max-width: 600px) {
+    right: 8%;
+  }
 `;
 
 const DeleteIcon = styled(Delete)`
   width: 20px;
   position: absolute;
   top: 25%;
-  right: 20%;
+  right: 5%;
+
+  @media(max-width: 600px) {
+    right: 2%;
+  }
 `;
 
 const EditableInput = styled.input.attrs({
@@ -41,7 +53,11 @@ const EditableInput = styled.input.attrs({
   font-size: 1rem;
   display: block;
   padding: 0.5rem;
-  width: 50%;
+  width: 80%;
+
+  @media(max-width:600px) {
+    width: 75%;
+  }
 `;
 
 /************
@@ -85,7 +101,6 @@ class EditableKeyPhrases extends Component {
   }
 
   componentDidUpdate(prevProps) {
-
     if (prevProps.keyPhrases !== this.props.keyPhrases) {
       this.setState({
         keyPhrases: this.props.keyPhrases

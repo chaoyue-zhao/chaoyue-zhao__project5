@@ -88,7 +88,7 @@ class Results extends Component {
         sentiment: (getResults[1].data.documents[0].score * 100).toFixed(2)
       });
     } catch (error) {
-      throw error;
+      alert('Something went wrong, please try again!')
     }
   };
 
@@ -139,8 +139,7 @@ class Results extends Component {
           <Paragraph>
             You were typing in {this.state.language}.
           </Paragraph>
-          {this.state.keyPhrases ? (
-            <List>
+          <List>
               The following key phrases are found:
               {this.state.keyPhrases.map((keyPhrase, i) => {
                 return (
@@ -155,9 +154,6 @@ class Results extends Component {
                 );
               })}
             </List>
-          ) : (
-            <Paragraph>We did not find any key phrases in the text you entered. Please try again</Paragraph>
-          )}
           <Sentiment>
             <SentimentText>
               The overall sentiment score of your thought is:
