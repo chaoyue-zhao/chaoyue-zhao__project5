@@ -28,7 +28,7 @@ class LoggedThoughts extends Component {
     render() {
         return (
             <React.Fragment>
-                <ul>Logged Thoughts:                        
+                <ul id="LoggedThoughts">Logged Thoughts:                        
                     {this.state.thoughts.map((thought, i) => {
                         return (
                         <li key={i}>Thought:{thought.text}

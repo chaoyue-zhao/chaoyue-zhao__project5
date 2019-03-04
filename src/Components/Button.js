@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Analyse } from 'styled-icons/boxicons-regular/Analyse';
+import { DownArrowCircle } from "styled-icons/boxicons-regular/DownArrowCircle";
 
 /**********
   STYLES
 *********/
 
-const AnalyseIcon = styled(Analyse)`
-width: 20px;
-position: absolute;
-top: 100%;
-left: 50%;
-transform: translateX(-50%);
-padding: 20px;
-text-align: center;
-vertical-align: middle;
+const ArrowIcon = styled(DownArrowCircle)`
+  width: 20px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 20px;
+  text-align: center;
+  vertical-align: middle;
 `;
 
 // button styled inspiration https://tympanus.net/Development/ButtonStylesInspiration/.
@@ -30,7 +30,7 @@ const Button = styled.button`
   position: relative;
   backface-visibility: hidden;
   cursor: pointer;
-  margin-bottom: 1rem;
+  margin: 1rem;
 
   /* span refers to the text on the button */
   span {
@@ -96,11 +96,24 @@ FUNCTIONS
 ************/
 
 class NiceButton extends Component {
+    constructor(){
+      super();
+
+      this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick () {
+      window.location.hash = this.props.link
+      
+    }
+
     render() {
         return (
-            <Button type="submit">
-                <AnalyseIcon className="icon" />
-                <span>See results</span>
+            <Button 
+            type="submit"
+            onClick={this.handleClick}>
+                <ArrowIcon className="icon" />
+                <span>{this.props.value}</span>
             </Button>
         )
     }

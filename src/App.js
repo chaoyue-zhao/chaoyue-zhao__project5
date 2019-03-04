@@ -46,6 +46,7 @@ class App extends Component {
 
   //function to handle form submit which is expecting a parameter
   handleFormSubmit = (userInput) => {
+    console.log('app received form submitted')
     this.setState({
       text: userInput,
       showResult: true

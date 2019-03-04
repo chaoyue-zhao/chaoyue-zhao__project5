@@ -21,7 +21,7 @@ const TextArea = styled.textarea`
   box-shadow: none;
   outline: none;
   border: none;
-  border: 3px solid #295166;
+  border: 3px solid ${props => props.theme.color.blue};
   border-radius: 10px;
   overflow: auto;
   word-wrap: break-word;
@@ -51,87 +51,92 @@ const TypedText = styled.label`
   FUNCTIONS
 ************/
 class InputForm extends Component {
-    constructor() {
-        super();
-        // set the state of InputForm to expect the input from user. 
-        this.state = {
-          userInput: '',
-          showLabel: true
-        }
-    }
+  constructor() {
+    super();
+    // set the state of InputForm to expect the input from user.
+    this.state = {
+      userInput: "",
+      showLabel: true
+    };
+  }
 
-    // passing the userInput back to App here
-    handleFormSubmit = (e) => {
-        e.preventDefault();
-        this.props.gatherUserInput(this.state.userInput);
-    }
-    
-    // super super sweet binding
-    handleChange = (e) => {       
-        this.setState({
-            [e.target.name]: e.target.value
-        })
-    }
+  // passing the userInput back to App here
+  handleFormSubmit = e => {
+    e.preventDefault();
+    console.log('formed submitted')
+    this.props.gatherUserInput(this.state.userInput);
+  };
 
-    hideLabel = () => {
-      this.setState({
-        showLabel: false
-      })
-    }
+  // super super sweet binding
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
 
-    componentDidMount() {
+  // label disabled if any input has received from user
+  hideLabel = () => {
+    this.setState({
+      showLabel: false
+    });
+  };
 
-      /**********
+  componentDidMount() {
+    /**********
         Type.js
       *********/
-     
-     const options = {
-       strings: [
-         `A week ago, I
+
+    const options = {
+      strings: [
+        `A week ago, I
       dreamt about this super cool idea for a mood diary app.
       Throughout the week, I drunk lots of tea, had couple 'why
       this is not working', followed by 'oh my, I am so smart'
       moments, got helps from many, many, many, many people. And
       you guess it, now you are looking at this app. I feel very
-      proud of myself.`, `Now you can type your thoughts here!`
-       ],
-       typeSpeed: 60,
-       loop: false,
-       showCursor: false
-     };
-      
-     this.typed = new Typed('#typed', options);
-    }
+      proud of myself.`,
+        `Now you can type your thoughts here!`
+      ],
+      typeSpeed: 60,
+      loop: false,
+      showCursor: false
+    };
 
-    render(){
-        return (
-          <Form
-            action="#"
-            name="inputForm"
-            onSubmit={this.handleFormSubmit}
-            onInput={this.hideLabel}
-          >
-            <TextArea
-              name="userInput"
-              id="userInput"
-              value={this.state.userInput}
-              onChange={this.handleChange}
-              required
-            />
+    this.typed = new Typed("#typed", options);
+  }
 
-            {this.state.showLabel && (
-              <TypedText
-                htmlFor="userInput"
-                id="typed"
-                aria-label="type your thoughts here to start!"
-                className="label"
-              />
-            )}
+  render() {
+    return (
+      <Form
+        action="#"
+        name="inputForm"
+        onSubmit={this.handleFormSubmit}
+        onInput={this.hideLabel}
+      >
+        <TextArea
+          name="userInput"
+          id="userInput"
+          value={this.state.userInput}
+          onChange={this.handleChange}
+          required
+        />
 
-            <NiceButton />
-          </Form>
-        );
-    }
+        {this.state.showLabel && (
+          <TypedText
+            htmlFor="userInput"
+            id="typed"
+            aria-label="type your thoughts here to start!"
+            className="label"
+          />
+        )}
+
+        <NiceButton 
+          value= 'See results'
+          link = '#results'
+        />
+      </Form>
+    );
+  }
 }
 
 export default InputForm;
