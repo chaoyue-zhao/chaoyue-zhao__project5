@@ -247,16 +247,3 @@ class Results extends Component {
 }
 
 export default Results;
-
-/* background: ${ ({sentimentValue}) => {linear-gradient(to right, )} }
-
-
-
-
-${ ({sentimentValue}) => (linear-gradient
-    (
-      to right,
-      ${props => props.theme.color.red} ${sentimentValue},
-      transparent ${sentimentValue}
-    ),
-  ${props => props.theme.color.blue}}); */
