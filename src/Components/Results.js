@@ -130,6 +130,13 @@ class Results extends Component {
     });
   };
 
+  
+
+  abstractedFunction = () => {
+    this.props.showLoggedThoughts()
+    this.updateFirebase()
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -138,7 +145,7 @@ class Results extends Component {
           <Paragraph>
             You were typing in {this.state.language}.
           </Paragraph>
-          {!this.state.keyPhrases ? (
+          {this.state.keyPhrases ? (
             <List>
               The following key phrases are found in the text you entered:
               {this.state.keyPhrases.map((keyPhrase, i) => {
@@ -165,14 +172,14 @@ class Results extends Component {
             <SentimentScore>{this.state.sentiment}%</SentimentScore>
           </Sentiment>
           </Section>
+     
+          <NiceButton
+            value="Log my thought"
+            link="#loggedThoughts"
+            type="button"
+            whenClicked={this.abstractedFunction}
+          />
 
-          <button
-          type="button"
-          onClick= {this.props.showLoggedThoughts}>
-          testing button
-          </button>
-          
-          
           </React.Fragment>
           );
         }
@@ -180,9 +187,3 @@ class Results extends Component {
       
       export default Results;
       
-      // <NiceButton
-      //   value="Log my thought"
-      //   link="#loggedThoughts"
-      //   type="button"
-      //   
-      // />

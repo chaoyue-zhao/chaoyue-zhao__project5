@@ -108,13 +108,13 @@ class NiceButton extends Component {
 
     render() {
         return (
-            <Button 
+          <Button
             type={this.props.type}
-            onClick={`${this.props.showLoggedThoughts}`}>
-                <ArrowIcon className="icon" />
-                <span>{this.props.value}</span>
-            </Button>
-        )
+            onClick={this.props.whenClicked}>
+            <ArrowIcon className="icon" />
+            <span>{this.props.value}</span>
+          </Button>
+        );
     }
 }
 
