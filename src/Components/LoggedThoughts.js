@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import firebase from '../firebase.js';
 import {
-    Section, Title, List, Sentiment, SentimentText, SentimentProgressBar,
-        SentimentScore
+    Section, Title, List, Sentiment, SentimentText, SentimentProgressBar, SentimentScore, Positive, Negative
 } from './StyledThoughts';
 
 /**********
@@ -81,7 +80,7 @@ class LoggedThoughts extends Component {
         return (
             <React.Fragment>
                <Section id="LoggedThoughts">
-                    <Title>Logged Thoughts</Title>
+                    <Title>Logged Thoughts (from you and everyone!)</Title>
                     <List id="LoggedThoughts">                    
                         {this.state.thoughts.map((thought, i) => {
                             return (
@@ -94,6 +93,8 @@ class LoggedThoughts extends Component {
                                         </SmallerSentimentText>
                                         <LongerSentimentProgressBar sentimentValue={thought.sentiment} />
                                         <ReadjustedSentimentScore>{thought.sentiment}%</ReadjustedSentimentScore>
+                                        q<Positive>Positive</Positive>
+                                        <Negative>Negative</Negative>
                                     </SmallerSentiment>   
                                     <KeyPhrases key={i}>KeyPhrases: 
                                         {thought.keyPhrases.map((keyPhrase, i) => {

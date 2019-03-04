@@ -66,7 +66,15 @@ background: linear-gradient(
 export const SentimentScore = styled.span`
 position: absolute;
 top: 22px;
-right: 28%;
+right: 17%;
 transform: translateX(50%);
-font-size: 0.8rem;
+font-size: 0.6rem;
 `;
+
+export const Positive = styled(SentimentScore) `
+right: 2%;
+`
+
+export const Negative = styled(SentimentScore) `
+right: 30%;
+`

@@ -13,7 +13,7 @@ class Description extends Component {
     render () {
         return (
            <Paragraph>
-            Start by typing a thought (long or short) below. The app will then return the language you were typing in, the key phrases mentioned in your thought, and a sentiment score between 0% (negative) to 100% (positive). You will have the chance to edit the key phrases and log your thought after! 
+            Start by typing a thought (long or short) below. The app will then return the language you were typing in, the key phrases mentioned in your thought, and a sentiment score between 0% (negative) to 100% (positive). You will have the chance to edit the key phrases and log your thought after! Please note the the thoughts you logged will be saved in a database and displayed to this page. 
            </Paragraph>
         )
     }

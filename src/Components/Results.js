@@ -3,7 +3,7 @@ import axios from "axios";
 import firebase from "../firebase";
 import {
   Section, Title, Paragraph, List, Item, Sentiment, SentimentText, SentimentProgressBar,
-  SentimentScore
+  SentimentScore, Positive, Negative
 } from './StyledThoughts'
 import EditableKeyPhrases from "./KeyPhrase";
 import NiceButton from "./Button";
@@ -18,7 +18,8 @@ class Results extends Component {
     this.state = {
       language: "",
       sentiment: "",
-      keyPhrases: []
+      keyPhrases: [],
+      loading: false
     };
   }
 
@@ -140,7 +141,7 @@ class Results extends Component {
           </Paragraph>
           {this.state.keyPhrases ? (
             <List>
-              The following key phrases are found in the text you entered:
+              The following key phrases are found:
               {this.state.keyPhrases.map((keyPhrase, i) => {
                 return (
                   <Item key={i}>
@@ -162,6 +163,8 @@ class Results extends Component {
               The overall sentiment score of your thought is:
             </SentimentText>
             <SentimentProgressBar sentimentValue={this.state.sentiment} />
+            <Positive>Positive</Positive>
+            <Negative>Negative</Negative>
             <SentimentScore>{this.state.sentiment}%</SentimentScore>
           </Sentiment>
           </Section>
