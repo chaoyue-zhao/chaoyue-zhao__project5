@@ -65,8 +65,6 @@ class EditableKeyPhrases extends Component {
   }
 
   handleClick = () => {
-    console.log(this.props.deleteKeyPhrases);
-
     this.setState({
       editable: !this.state.editable,
     })

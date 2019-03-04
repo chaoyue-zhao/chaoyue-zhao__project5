@@ -57,7 +57,6 @@ class Results extends Component {
 
   // function to push logged thoughts to Firebase
   updateFirebase = data => {
-    console.log("updated firebase!");
     // created an object that contains all the details about the thought
     const results = {
       text: this.props.userInput,
@@ -71,8 +70,6 @@ class Results extends Component {
 
   // function to actually fetch data from api with super sweet syntax sugar
   getResponse = async () => {
-    console.log("went to get data");
-
     try {
       const getLanguage = await this.apiCalls("languages");
 
@@ -89,8 +86,6 @@ class Results extends Component {
         keyPhrases: getResults[0].data.documents[0].keyPhrases,
         sentiment: (getResults[1].data.documents[0].score * 100).toFixed(2)
       });
-
-      console.log(this.state.language);
     } catch (error) {
       throw error;
     }
