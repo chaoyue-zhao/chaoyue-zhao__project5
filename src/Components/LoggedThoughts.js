@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import firebase from '../firebase.js';
 import {
-    Section, Title, Paragraph, List, Item, Sentiment, SentimentText, SentimentProgressBar,
+    Section, Title, List, Sentiment, SentimentText, SentimentProgressBar,
         SentimentScore
 } from './StyledThoughts';
 

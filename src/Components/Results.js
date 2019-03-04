@@ -130,8 +130,6 @@ class Results extends Component {
     });
   };
 
-  
-
   abstractedFunction = () => {
     this.props.showLoggedThoughts()
     this.updateFirebase()
