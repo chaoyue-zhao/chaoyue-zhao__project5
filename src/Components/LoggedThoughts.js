@@ -68,6 +68,7 @@ const SmallerSentiment = styled(Sentiment)`
 `
 
 const ReadjustedSentimentScore = styled(SentimentScore)`
+  top: 50px;
   right: 25%;
 
   @media (max-width: 1000px) {
@@ -76,15 +77,17 @@ const ReadjustedSentimentScore = styled(SentimentScore)`
   }
 `;
 const ReadjustedNegative = styled(Negative)`
+  top: 50px;
   right: 50%;
 
   @media (max-width: 1000px) {
     top: 70px;
     right: 90%;
   }
-
-`
+`;
 const ReadjustedPositive = styled(Positive)`
+  top: 50px;
+  
   @media (max-width: 1000px) {
     top: 70px;
     right: 23%;
@@ -106,16 +109,6 @@ const Phrase = styled.span `
 const Bold = styled.span `
     font-weight: 600;
 `
-const SmallerSentimentText = styled(SentimentText)`
-  width: 50%;
-`;
-const SmallerSentiment = styled(Sentiment)`
-  width: 50%;
-`;
-
-const ReadjustedSentimentScore = styled(SentimentScore)`
-  right: 40%;
-`;
 
 /************
   FUNCTIONS
@@ -169,8 +162,8 @@ class LoggedThoughts extends Component {
                         <ReadjustedSentimentScore>
                           {thought.sentiment}%
                         </ReadjustedSentimentScore>
-                        <Positive>Positive</Positive>
-                        <Negative>Negative</Negative>
+                        <ReadjustedPositive>Positive</ReadjustedPositive>
+                        <ReadjustedNegative>Negative</ReadjustedNegative>
                       </SmallerSentiment>
                       {thought.keyPhrases && <KeyPhrases key={i}>
                         KeyPhrases:
