@@ -78,7 +78,7 @@ class App extends Component {
               {/*passing the handleFormSubmit function down as props*/}
               <InputForm gatherUserInput={this.handleFormSubmit} showResult={this.state.showResult}/>
               {this.state.showResult && <Results userInput={this.state.text} showLoggedThoughts={this.showLoggedThoughts} />}
-              {this.state.showLoggedThoughts && <LoggedThoughts thoughts={this.state.text}/>}
+              {this.state.showLoggedThoughts && <LoggedThoughts />}
               <Footer />
           </div>  
         </Wrapper>  

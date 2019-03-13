@@ -1,17 +1,25 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import firebase from '../firebase.js';
+import React, { Component } from "react";
+import styled from "styled-components";
+import firebase from "../firebase.js";
 import {
-    Section, Title, List, Sentiment, SentimentText, SentimentProgressBar, SentimentScore, Positive, Negative
-} from './StyledThoughts';
+  Section,
+  Title,
+  List,
+  Sentiment,
+  SentimentText,
+  SentimentProgressBar,
+  SentimentScore,
+  Positive,
+  Negative
+} from "./StyledThoughts";
 
 /**********
  STYLES
 *********/
 
 const Thought = styled.p`
-    width: 100%;
-`
+  width: 100%;
+`;
 
 const ThoughtDetails = styled.ul`
     display: flex;
@@ -84,7 +92,6 @@ const ReadjustedPositive = styled(Positive)`
 `;
 const KeyPhrases = styled.p`
   display: flex;
-  flex-wrap: wrap;
   justify-content: flex-start;
   margin: 0;
   width: 90%;
@@ -99,70 +106,101 @@ const Phrase = styled.span `
 const Bold = styled.span `
     font-weight: 600;
 `
+const SmallerSentimentText = styled(SentimentText)`
+  width: 50%;
+`;
+const SmallerSentiment = styled(Sentiment)`
+  width: 50%;
+`;
+
+const ReadjustedSentimentScore = styled(SentimentScore)`
+  right: 40%;
+`;
+
 /************
   FUNCTIONS
 ************/
 
 class LoggedThoughts extends Component {
-    constructor(){
-        super();
-        this.state = {
-            thoughts: []
-        }
-    }
-    
-    componentDidMount() {
-        const dbRef = firebase.database().ref();
-        dbRef.on('value', (firebaseData) => {
-            const newState = [];
-            const data = firebaseData.val();
+  constructor(props) {
+    super(props);
+    this.state = {
+      thoughts: this.props.data,
+      loading: false
+    };
+  }
+  
+  componentDidMount() {
+    const dbRef = firebase.database().ref();
+    dbRef.on("value", async (firebaseData) => {
+      const newState = [];
+      const data = firebaseData.val();
 
-            for (let key in data) {
-                newState.push(data[key]);
-            }
+      for (let key in data) {
+        newState.push(data[key]);
+      }
+      await this.setState({
+        thoughts: newState,
+        loading: true
+      });
+    })
+  }
 
-            this.setState({
-                thoughts: newState
-            })
-        })
-    }
-    
-    render() {
-        return (
-            <React.Fragment>
-               <Section id="LoggedThoughts">
-                    <Title>Logged Thoughts (from you and everyone!)</Title>
-                    <List id="LoggedThoughts">                    
-                        {this.state.thoughts.map((thought, i) => {
-                            return (
-                                <Thought key={i}><Bold>Thought:</Bold> {thought.text}
-                                <ThoughtDetails>
-                                    <Language><Bold>Language</Bold>: {thought.language} </Language>
-                                    <SmallerSentiment>
-                                        <SmallerSentimentText>
-                                            <Bold>Sentiment Score</Bold>:
-                                        </SmallerSentimentText>
-                                        <LongerSentimentProgressBar sentimentValue={thought.sentiment} />
-                                        <ReadjustedSentimentScore>{thought.sentiment}%</ReadjustedSentimentScore>
-                                        <ReadjustedPositive>Positive</ReadjustedPositive>
-                                        <ReadjustedNegative>Negative</ReadjustedNegative>
-                                    </SmallerSentiment>   
-                                    <KeyPhrases key={i}><Bold>KeyPhrases</Bold>: 
-                                        {thought.keyPhrases.map((keyPhrase, i) => {
-                                            return (
-                                                <Phrase key={i}>{keyPhrase},</Phrase>
-                                            )
-                                        })}
-                                    </KeyPhrases>                                         
-                                </ThoughtDetails>
-                            </Thought>
-                          )
-                        })}  
-                    </List>
-               </Section>
-            </React.Fragment>
-        )
-    }
+  render() {
+    return (
+    this.state.thoughts.length && this.state.loading && (
+        <React.Fragment>
+          <Section id="LoggedThoughts">
+            <Title>Logged Thoughts (from you and everyone!)</Title>
+            <List id="LoggedThoughts">
+              {this.state.thoughts.map((thought, i) => {
+                return (
+                  <Thought key={i}>
+                    <Bold>Thought:</Bold> {thought.text}
+                    <ThoughtDetails>
+                      <Language>Language: {thought.language} </Language>
+                      <SmallerSentiment>
+                        <SmallerSentimentText>
+                          Sentiment Score:
+                        </SmallerSentimentText>
+                        <LongerSentimentProgressBar
+                          sentimentValue={thought.sentiment}
+                        />
+                        <ReadjustedSentimentScore>
+                          {thought.sentiment}%
+                        </ReadjustedSentimentScore>
+                        <Positive>Positive</Positive>
+                        <Negative>Negative</Negative>
+                      </SmallerSentiment>
+                      {thought.keyPhrases && <KeyPhrases key={i}>
+                        KeyPhrases:
+                        {thought.keyPhrases.map((keyPhrase, i) => {
+                          return <Phrase key={i}>{keyPhrase},</Phrase>;
+                        })}
+                      </KeyPhrases>}
+                    </ThoughtDetails>
+                  </Thought>
+                );
+              })}
+            </List>
+          </Section>
+        </React.Fragment>
+      )
+    );
+  }
+}
+
+LoggedThoughts.defaultProps = {
+
+  data: [{
+    keyPhrases: "somephrases",
+    language: "somelanguage",
+    sentiment: "80.00",
+    text: "sometext"
+  }]
 }
 
 export default LoggedThoughts;
+
+
+
